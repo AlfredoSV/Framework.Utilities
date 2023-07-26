@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FrameworkSql;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +11,36 @@ namespace Framework.Utilities2023.Log
     {
         private Guid _Id;
 
+        [Id]
         public Guid Id { 
             get { return this._Id; } 
             set{ this._Id = value; }
         }
-      
+
+        private string Class;
+
+        public string _Class
+        {
+            get { return Class; }
+            set { Class = value; }
+        }
+
+        private string Method;
+
+        public string MyProperty
+        {
+            get { return Method; }
+            set { Method = value; }
+        }
+
+        private Guid IdApplication;
+
+        public Guid _IdApplication
+        {
+            get { return IdApplication; }
+            set { IdApplication = value; }
+        }
+
         private string _Type;
 
         public string Type {

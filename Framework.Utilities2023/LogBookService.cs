@@ -13,15 +13,17 @@ namespace Framework.Utilities2023.Log
         private readonly DateTime _Date;
         private readonly string _Detail;
 
+        private LogBook _logBook = new LogBook();
+        private RepositorieLogBook _repositorieLogBook = new RepositorieLogBook();
+
         public LogBookService(Type t)
         {
-            this._Name = t.Name;
-            this._Date = DateTime.Now;
+            this._Name = t.Name;          
         }
 
         public void SaveLog(string message,Array array)
         {
-            
+            this._repositorieLogBook.sqlDb.Insert(this._logBook);
         }
     }
 }
