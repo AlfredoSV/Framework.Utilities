@@ -45,6 +45,7 @@
     <Compile Include="LogBook.cs" />
     <Compile Include="LogBookService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UtilitiesInt.cs" />
     <Compile Include="UtilitiesString.cs" />
   </ItemGroup>
   <ItemGroup />
