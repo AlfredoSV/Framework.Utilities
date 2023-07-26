@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Framework.Utilities2023.UtilitiesString
@@ -28,6 +29,13 @@ namespace Framework.Utilities2023.UtilitiesString
             return new string(convert);
         }
 
-        
+        public static bool StringIsBase64(this string str)
+        {
+            str = str.Trim();
+            return (str.Length % 4 == 0) && Regex.IsMatch(str, @"^[a-zA-Z0-9\+/]*={0,3}$", RegexOptions.None);
+        }
+
+
+
     }
 }
