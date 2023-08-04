@@ -35,7 +35,10 @@ namespace Framework.Utilities2023.UtilitiesString
             return (str.Length % 4 == 0) && Regex.IsMatch(str, @"^[a-zA-Z0-9\+/]*={0,3}$", RegexOptions.None);
         }
 
-
+        public static bool OnlyNumbers(this string str)
+        {
+            return Regex.IsMatch(str, @"^\d+$");
+        }
 
     }
 }
