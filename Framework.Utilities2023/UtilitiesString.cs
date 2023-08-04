@@ -37,7 +37,7 @@ namespace Framework.Utilities2023.UtilitiesString
 
         public static bool OnlyNumbers(this string str)
         {
-            return Regex.IsMatch(str, @"^\d+$");
+            return (str.Length > 0) && Regex.IsMatch(str, @"^\d+$");
         }
 
     }
