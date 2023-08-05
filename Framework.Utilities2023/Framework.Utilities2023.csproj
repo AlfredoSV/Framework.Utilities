@@ -45,10 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceptions\FkwException.cs" />
-    <Compile Include="LogBook.cs" />
-    <Compile Include="LogBookService.cs" />
+    <Compile Include="Exceptions\LogBook.cs" />
+    <Compile Include="Exceptions\LogBookService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RepositorieLogBook.cs" />
     <Compile Include="UtilitiesInt.cs" />
     <Compile Include="UtilitiesString.cs" />
   </ItemGroup>
