@@ -23,6 +23,7 @@ namespace Framework.Utilities2023.Exceptions
 
             LogBook logBook = LogBook.Create(classEx, methodEx, typeEx, message);
 
+            _logService.SaveLog(logBook);
         }
 
 
