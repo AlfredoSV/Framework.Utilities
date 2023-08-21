@@ -9,7 +9,7 @@ namespace Framework.Utilities2023.Exceptions
 {
     public class FkwException : Exception
     {
-        private LogBookService _logService = new LogBookService();
+        private ServiceLogBook _logService = new ServiceLogBook();
 
         private string _Message  { get; set; }
         private string _ClassEx  { get; set; }

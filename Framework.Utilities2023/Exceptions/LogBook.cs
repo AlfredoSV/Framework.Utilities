@@ -1,4 +1,4 @@
-﻿using FrameworkSql;
+﻿
 using System;
 
 namespace Framework.Utilities2023.Log
@@ -6,8 +6,7 @@ namespace Framework.Utilities2023.Log
     public class LogBook
     {
         private Guid _Id;
-
-        [Id]
+   
         public Guid Id
         {
             get { return this._Id; }
