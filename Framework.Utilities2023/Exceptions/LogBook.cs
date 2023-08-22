@@ -5,67 +5,76 @@ namespace Framework.Utilities2023.Log
 {
     public class LogBook
     {
-        private Guid _Id;
+        private Guid _idName;
    
-        public Guid Id
+        public Guid IdName
         {
-            get { return this._Id; }
-            set { this._Id = value; }
+            get { return this._idName; }
+            set { this._idName = value; }
         }
 
-        private string _Class;
+        private string _className;
 
-        public string Class
+        public string ClassName
         {
-            get { return _Class; }
-            set { _Class = value; }
+            get { return _className; }
+            set { _className = value; }
         }
 
-        private string _Method;
+        private string _methodName;
 
-        public string Method
+        public string MethodName
         {
-            get { return _Method; }
-            set { _Method = value; }
+            get { return _methodName; }
+            set { _methodName = value; }
         }
 
-        private string _Type;
+        private string _typeName;
 
-        public string Type
+        public string TypeName
         {
 
-            get { return this._Type; }
-            set { this._Type = value; }
-
-        }
-
-        private string _Message;
-
-        public string Message
-        {
-
-            get { return this._Message; }
-            set { this._Message = value; }
+            get { return this._typeName; }
+            set { this._typeName = value; }
 
         }
 
-        private DateTime _DateCreated;
+        private string _meessageName;
+
+        public string MessageName
+        {
+
+            get { return this._meessageName; }
+            set { this._meessageName = value; }
+
+        }
+
+        private DateTime _dateCreated;
 
         public DateTime DateCreated
         {
-            get { return _DateCreated; }
-            set { _DateCreated = value; }
+            get { return _dateCreated; }
+            set { _dateCreated = value; }
         }
-
 
         private LogBook( string classEx, string method, string type, string message)
         {
-            Id = Guid.NewGuid();
-            Class = classEx;
-            Method = method;
-            Type = type;
-            Message = message;
+            IdName = Guid.NewGuid();
+            ClassName = classEx;
+            MethodName = method;
+            TypeName = type;
+            MessageName = message;
             DateCreated = DateTime.Now;
+        }
+
+        private LogBook(Guid id, string classEx, string method, string type, string message, DateTime dateCreated)
+        {
+            IdName = id;
+            ClassName = classEx;
+            MethodName = method;
+            TypeName = type;
+            MessageName = message;
+            DateCreated = dateCreated;
         }
 
         public static LogBook Create( string classEx, string method, string type, string message)
@@ -73,6 +82,10 @@ namespace Framework.Utilities2023.Log
             return new LogBook(   classEx,  method,  type,  message);
         }
 
+        public static LogBook Create(Guid id, string classEx, string method, string type, string message, DateTime dateCreated)
+        {
+            return new LogBook(id,classEx, method, type, message,dateCreated);
+        }
     }
 
 }
