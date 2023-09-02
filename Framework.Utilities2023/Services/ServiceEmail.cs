@@ -23,12 +23,11 @@ namespace Framework.Utilities2023.Email.Services
 
             using(SmtpClient smtpClient = new SmtpClient())
             {
-
-                smtpClient.Port = 000;
-                smtpClient.EnableSsl = true;
+                smtpClient.Port = SmtpConfuiguration.Instance.Port;
+                smtpClient.EnableSsl = SmtpConfuiguration.Instance.EnableSsl;
                 NetworkCredential networkCredential = new NetworkCredential();
-                networkCredential.UserName = "";
-                networkCredential.Password = "";
+                networkCredential.UserName = SmtpConfuiguration.Instance.UserName;
+                networkCredential.Password = SmtpConfuiguration.Instance.Password;
                 smtpClient.Credentials = networkCredential;
                 smtpClient.Send(message);
             }

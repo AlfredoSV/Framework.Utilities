@@ -49,6 +49,7 @@
     <Compile Include="IServices\IServiceEmail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ServiceEmail.cs" />
+    <Compile Include="SmtpConfuiguration.cs" />
     <Compile Include="UtilitiesInt.cs" />
     <Compile Include="UtilitiesString.cs" />
   </ItemGroup>
