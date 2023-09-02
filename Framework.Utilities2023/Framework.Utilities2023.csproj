@@ -45,7 +45,9 @@
     <Compile Include="Exceptions\LogBook.cs" />
     <Compile Include="Exceptions\RepositoryLogBook.cs" />
     <Compile Include="Exceptions\ServiceLogBook.cs" />
+    <Compile Include="IServices\IServiceEmail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ServiceEmail.cs" />
     <Compile Include="UtilitiesInt.cs" />
     <Compile Include="UtilitiesString.cs" />
   </ItemGroup>
