@@ -40,5 +40,10 @@ namespace Framework.Utilities2023.UtilitiesString
             return (str.Length > 0) && Regex.IsMatch(str, @"^\d+$");
         }
 
+        public static bool IsEmail(this string str)
+        {
+            return Regex.IsMatch(str, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
+        }
+
     }
 }
