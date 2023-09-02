@@ -9,7 +9,7 @@ namespace Framework.Utilities2023.Log
 
         public ServiceLogBook()
         {
-            _repositoryLogBook = new RepositoryLogBook("");
+            _repositoryLogBook = new RepositoryLogBook();
         }
         
         public void SaveLog(LogBook logBook)

@@ -12,9 +12,9 @@ namespace Framework.Utilities2023.Exceptions
     {
         private readonly string _sqlStr;
 
-        public RepositoryLogBook(string sqlStr)
+        public RepositoryLogBook()
         {
-            _sqlStr = sqlStr;
+            _sqlStr = ConnectionStr.Instance.ConnectionFramework;
         }
         public void Save(LogBook book)
         {
