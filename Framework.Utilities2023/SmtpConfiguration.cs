@@ -1,16 +1,16 @@
 ﻿namespace Framework.Utilities2023
 {
-    public class SmtpConfuiguration
+    public class SmtpConfiguration
     {
-        private static SmtpConfuiguration _instance;
+        private static SmtpConfiguration _instance;
 
-        public static SmtpConfuiguration Instance
+        public static SmtpConfiguration Instance
         {
             get
             {
 
                 if (_instance is null)
-                    _instance = new SmtpConfuiguration();
+                    _instance = new SmtpConfiguration();
                 return _instance;
 
             }

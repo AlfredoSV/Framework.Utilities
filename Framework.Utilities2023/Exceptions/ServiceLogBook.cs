@@ -1,5 +1,5 @@
 ﻿
-using Framework.Utilities2023.Exceptions;
+using Framework.Utilities2023.Repository;
 
 namespace Framework.Utilities2023.Log
 {

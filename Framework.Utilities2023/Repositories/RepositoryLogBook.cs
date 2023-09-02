@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Framework.Utilities2023.Exceptions
+namespace Framework.Utilities2023.Repository
 {
     public class RepositoryLogBook
     {
