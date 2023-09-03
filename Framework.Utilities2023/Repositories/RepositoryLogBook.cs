@@ -1,4 +1,5 @@
-﻿using Framework.Utilities2023.Log;
+﻿using Framework.Utilities202.Entities;
+using Framework.Utilities2023.Log;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;

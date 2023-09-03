@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Framework.Utilities2023.Entities;
+using System;
 using System.Data.SqlClient;
 
 namespace Framework.Utilities2023.Repositories
@@ -11,18 +12,36 @@ namespace Framework.Utilities2023.Repositories
         {
             _sqlStr = ConnectionStr.Instance.ConnectionFramework;
         }
-        public void GetByid(Guid idTemplate)
+
+        public TemplateEmail GetByid(Guid idTemplate)
         {
-            string insertStr = @"";
+            string insertStr = @"Select Id, NameTemplate, BodyTemplate, DateCreated
+                                where Id = @idTemplate";
+            TemplateEmail template = null;
+
+            SqlDataReader sqlDataReader = null;
             using (SqlConnection sqlConnection = new SqlConnection(_sqlStr))
             {
                 sqlConnection.Open();
                 SqlCommand cmd = sqlConnection.CreateCommand();
                 cmd.CommandText = insertStr;
-                cmd.Parameters.AddWithValue("id", idTemplate);
-                cmd.ExecuteNonQuery();
+                cmd.Parameters.AddWithValue("idTemplate", idTemplate);
+
+                sqlDataReader = cmd.ExecuteReader();
+
+                if (sqlDataReader.HasRows)
+                {
+                    sqlDataReader.Read();
+
+                    template = TemplateEmail.Create(sqlDataReader.GetGuid(0),
+                        sqlDataReader.GetString(1), sqlDataReader.GetString(2),
+                        sqlDataReader.GetDateTime(3));
+
+                }
 
             }
+
+            return template;
         }
     }
 }

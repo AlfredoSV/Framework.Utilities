@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-namespace Framework.Utilities2023.Log
+namespace Framework.Utilities202.Entities
 {
     public class LogBook
     {
