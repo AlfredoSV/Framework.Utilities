@@ -1,4 +1,5 @@
-﻿using Framework.Utilities2023.Log;
+﻿using Framework.Utilities202.Entities;
+using Framework.Utilities2023.Log;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -6,15 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Framework.Utilities2023.Exceptions
+namespace Framework.Utilities2023.Repository
 {
     public class RepositoryLogBook
     {
         private readonly string _sqlStr;
 
-        public RepositoryLogBook(string sqlStr)
+        public RepositoryLogBook()
         {
-            _sqlStr = sqlStr;
+            _sqlStr = ConnectionStr.Instance.ConnectionFramework;
         }
         public void Save(LogBook book)
         {

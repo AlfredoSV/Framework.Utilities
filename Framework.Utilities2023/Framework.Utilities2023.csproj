@@ -41,13 +41,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exceptions\FkwException.cs" />
-    <Compile Include="Exceptions\LogBook.cs" />
-    <Compile Include="Exceptions\RepositoryLogBook.cs" />
+    <Compile Include="ConnectionStr.cs" />
+    <Compile Include="Entities\FkwException.cs" />
+    <Compile Include="Entities\LogBook.cs" />
+    <Compile Include="Entities\TemplateEmail.cs" />
+    <Compile Include="Repositories\RepositoryLogBook.cs" />
     <Compile Include="Exceptions\ServiceLogBook.cs" />
     <Compile Include="IServices\IServiceEmail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\RepositoryTemplatesEmail.cs" />
     <Compile Include="Services\ServiceEmail.cs" />
+    <Compile Include="SmtpConfiguration.cs" />
     <Compile Include="UtilitiesInt.cs" />
     <Compile Include="UtilitiesString.cs" />
   </ItemGroup>
