@@ -2,8 +2,7 @@
 using Framework.Utilities202.Entities;
 using Framework.Utilities2023.Repository;
 
-namespace Framework.Utilities2023.Log
-{
+namespace Framework.Utilities2023.Log.Services { 
     public class ServiceLogBook
     {
         private readonly RepositoryLogBook _repositoryLogBook;
