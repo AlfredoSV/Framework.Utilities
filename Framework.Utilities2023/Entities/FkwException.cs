@@ -1,5 +1,6 @@
 ﻿using Framework.Utilities202.Entities;
 using Framework.Utilities2023.Log;
+using Framework.Utilities2023.Log.Services;
 using System;
 
 namespace Framework.Utilities2023.Entities
