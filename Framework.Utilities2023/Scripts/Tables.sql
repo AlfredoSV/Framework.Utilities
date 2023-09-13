@@ -22,3 +22,21 @@ DateCreated DATETIME NOT NULL
 );
 
 
+if exists(select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'TemplateEmail')
+begin
+	
+	drop table TemplateEmail;
+	PRINT 'Table TemplateEmail deleted'
+
+end;
+
+
+CREATE TABLE
+TemplateEmail
+(
+Id UNIQUEIDENTIFIER NOT NULL,
+NameTemplate VARCHAR(30) NOT NULL,
+BodyTemplate VARCHAR(MAX) NOT NULL,
+DateCreated DATETIME NOT NULL
+
+);

@@ -15,7 +15,7 @@ namespace Framework.Utilities2023.Repositories
 
         public TemplateEmail GetByid(Guid idTemplate)
         {
-            string insertStr = @"Select Id, NameTemplate, BodyTemplate, DateCreated
+            string insertStr = @"Select Id, NameTemplate, BodyTemplate, DateCreated from TemplateEmail
                                 where Id = @idTemplate";
             TemplateEmail template = null;
 
