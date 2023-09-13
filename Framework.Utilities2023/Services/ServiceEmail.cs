@@ -23,7 +23,7 @@ namespace Framework.Utilities2023.Email.Services
 
             foreach (KeyValuePair<string,string> paraBo in paramsBody)
             {
-                template.BodyTemplate.Replace(paraBo.Key, paraBo.Value);
+                template.BodyTemplate = template.BodyTemplate.Replace(paraBo.Key, paraBo.Value);
             }
 
             return template.BodyTemplate;
@@ -40,7 +40,7 @@ namespace Framework.Utilities2023.Email.Services
                 message.To.Add(emailTo);
                 message.Body = GenerateBody(idTemplate, paramsBody);
 
-                using (SmtpClient smtpClient = new SmtpClient())
+                using (SmtpClient smtpClient = new SmtpClient("smtp.gmail.com"))
                 {
                     smtpClient.Port = SmtpConfiguration.Instance.Port;
                     smtpClient.EnableSsl = SmtpConfiguration.Instance.EnableSsl;
