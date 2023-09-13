@@ -10,7 +10,7 @@ namespace Framework.Utilities2023.Repositories
 
         public RepositoryTemplatesEmail()
         {
-            _sqlStr = ConnectionStr.Instance.ConnectionFramework;
+            _sqlStr = ConnectionStrUtilities.Instance.ConnectionFramework;
         }
 
         public TemplateEmail GetByid(Guid idTemplate)

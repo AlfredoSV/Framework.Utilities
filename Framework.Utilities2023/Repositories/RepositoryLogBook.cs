@@ -15,7 +15,7 @@ namespace Framework.Utilities2023.Repository
 
         public RepositoryLogBook()
         {
-            _sqlStr = ConnectionStr.Instance.ConnectionFramework;
+            _sqlStr = ConnectionStrUtilities.Instance.ConnectionFramework;
         }
         public void Save(LogBook book)
         {

@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConnectionStr.cs" />
+    <Compile Include="ConnectionStrUtilities.cs" />
     <Compile Include="Entities\FkwException.cs" />
     <Compile Include="Entities\LogBook.cs" />
     <Compile Include="Entities\TemplateEmail.cs" />

@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace Framework.Utilities2023
 {
-    public class ConnectionStr
+    public class ConnectionStrUtilities
     {
-        private static ConnectionStr _instance;
+        private static ConnectionStrUtilities _instance;
 
-        public  static ConnectionStr Instance
+        public  static ConnectionStrUtilities Instance
         {
             get {
 
                 if (_instance is null)
-                    _instance = new ConnectionStr();
+                    _instance = new ConnectionStrUtilities();
                 return _instance;
             
             }
