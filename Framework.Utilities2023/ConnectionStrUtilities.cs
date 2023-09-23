@@ -22,7 +22,7 @@ namespace Framework.Utilities2023
             private set { }
         }
 
-        public string ConnectionFramework { get; set; }
+        public string StrConnectionFrameworkUtilities { get; set; }
 
     }
 }

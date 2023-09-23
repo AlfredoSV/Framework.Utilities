@@ -45,6 +45,7 @@
     <Compile Include="Entities\FkwException.cs" />
     <Compile Include="Entities\LogBook.cs" />
     <Compile Include="Entities\TemplateEmail.cs" />
+    <Compile Include="IServices\IServiceLogBook.cs" />
     <Compile Include="Repositories\RepositoryLogBook.cs" />
     <Compile Include="Services\ServiceLogBook.cs" />
     <Compile Include="IServices\IServiceEmail.cs" />
