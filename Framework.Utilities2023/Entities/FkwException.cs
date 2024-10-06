@@ -13,17 +13,16 @@ namespace Framework.Utilities2023.Entities
         private string _ClassEx  { get; set; }
         private string _MethodEx { get; set; }
 
-        public FkwException(string message, string classEx, string methodEx, string typeEx) : base(message)
+        public FkwException(string message, string classEx, string methodEx) : base(message)
         {
             _Message = message;
             _ClassEx = classEx;
             _MethodEx = methodEx;
 
-            LogBook logBook = LogBook.Create(classEx, methodEx, typeEx, message);
+            LogBook logBook = LogBook.Create(classEx, methodEx, message);
 
-            _logService.SaveLog(logBook);
+            _logService.SaveErrorLog(logBook);
         }
-
 
     }
 }

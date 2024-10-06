@@ -51,8 +51,7 @@ namespace Framework.Utilities2023.Email.Services
                     smtpClient.Send(message);
                 }
             }catch(Exception ex) { }
-            
-            
+                    
         }
     }
 }
