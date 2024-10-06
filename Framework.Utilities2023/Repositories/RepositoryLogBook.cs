@@ -1,11 +1,5 @@
 ﻿using Framework.Utilities202.Entities;
-using Framework.Utilities2023.Log;
-using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Framework.Utilities2023.Repository
 {
@@ -17,9 +11,11 @@ namespace Framework.Utilities2023.Repository
         {
             _sqlStr = ConnectionStrUtilities.Instance.StrConnectionFrameworkUtilities;
         }
+
         public void Save(LogBook book)
         {
-            string insertStr = @"INSERT INTO LogBook VALUES(@id, @className,@methodName, @typeName, @messageName, @dateCreated);";
+            string insertStr = 
+                @"INSERT INTO LogBook VALUES(@id, @className,@methodName, @typeName, @message, @dateCreated);";
             using (SqlConnection sqlConnection = new SqlConnection(_sqlStr))
             {
                 sqlConnection.Open();
@@ -28,11 +24,10 @@ namespace Framework.Utilities2023.Repository
                 cmd.Parameters.AddWithValue("id",book.IdName);
                 cmd.Parameters.AddWithValue("className", book.ClassName);
                 cmd.Parameters.AddWithValue("methodName", book.MethodName);
-                cmd.Parameters.AddWithValue("typeName", book.TypeName);
-                cmd.Parameters.AddWithValue("messageName", book.MessageName);
+                cmd.Parameters.AddWithValue("typeName", book.Type);
+                cmd.Parameters.AddWithValue("message", book.Message);
                 cmd.Parameters.AddWithValue("dateCreated", book.DateCreated);
                 cmd.ExecuteNonQuery();
-
             }
         }
     }

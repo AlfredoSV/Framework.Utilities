@@ -13,9 +13,22 @@ namespace Framework.Utilities2023.Log.Services {
         {
             _repositoryLogBook = new RepositoryLogBook();
         }
-        
-        public void SaveLog(LogBook logBook)
+
+        public void SaveErrorLog(LogBook logBook)
         {
+            logBook.Type = ErrorType.Error;
+            _repositoryLogBook.Save(logBook);
+        }
+
+        public void SaveInformationLog(LogBook logBook)
+        {
+            logBook.Type = ErrorType.Information;
+            _repositoryLogBook.Save(logBook);
+        }
+
+        public void SaveWarningLog(LogBook logBook)
+        {
+            logBook.Type = ErrorType.Warning;
             _repositoryLogBook.Save(logBook);
         }
     }
