@@ -12,9 +12,9 @@ namespace Framework.Utilities2023.Email.Services
     {
         private readonly RepositoryTemplatesEmail _repositoryTemplatesEmail;
 
-        public ServiceEmail()
+        public ServiceEmail(RepositoryTemplatesEmail repositoryTemplatesEmail)
         {
-            _repositoryTemplatesEmail = new RepositoryTemplatesEmail();
+            _repositoryTemplatesEmail = repositoryTemplatesEmail;
         }
 
         public string GenerateBody(Guid idTemplate, Dictionary<string, string> paramsBody)

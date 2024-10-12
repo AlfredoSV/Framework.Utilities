@@ -1,5 +1,4 @@
 ﻿using Framework.Utilities2023.Entities;
-using System;
 using System.Data.SqlClient;
 
 namespace Framework.Utilities2023.Repositories
@@ -8,9 +7,9 @@ namespace Framework.Utilities2023.Repositories
     {
         private readonly string _sqlStr;
 
-        public RepositoryTemplatesEmail()
+        public RepositoryTemplatesEmail(ConnectionStrUtilities connectionStrUtilities)
         {
-            _sqlStr = ConnectionStrUtilities.Instance.StrConnectionFrameworkUtilities;
+            _sqlStr = connectionStrUtilities.StrConnectionFrameworkUtilities;
         }
 
         public TemplateEmail GetByid(Guid idTemplate)

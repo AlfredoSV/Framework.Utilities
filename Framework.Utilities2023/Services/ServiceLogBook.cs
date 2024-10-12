@@ -9,9 +9,9 @@ namespace Framework.Utilities2023.Log.Services {
     {
         private readonly RepositoryLogBook _repositoryLogBook;
 
-        public ServiceLogBook()
+        public ServiceLogBook(RepositoryLogBook repositoryLogBook)
         {
-            _repositoryLogBook = new RepositoryLogBook();
+            _repositoryLogBook = repositoryLogBook;
         }
 
         public void SaveErrorLog(LogBook logBook)
