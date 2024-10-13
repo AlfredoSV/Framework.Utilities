@@ -22,6 +22,7 @@ namespace Framework.Utilities2023
                 if (string.IsNullOrEmpty(_connectionStr))
                 {
                     _connectionStr = this._configuration["DataBase:ConnectionStrUtilities"];
+                    ArgumentException.ThrowIfNullOrWhiteSpace(_connectionStr, nameof(_connectionStr));
                 }
 
                 return _connectionStr;

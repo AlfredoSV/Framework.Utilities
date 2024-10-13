@@ -13,6 +13,7 @@ namespace Framework.Utilities2023.Services
         public static void AddInitialServices(this IServiceCollection serviceCollection)
         {         
             serviceCollection.AddTransient<ConnectionStrUtilities>();
+            serviceCollection.AddTransient<SmtpConfiguration>();
             serviceCollection.AddTransient<RepositoryTemplatesEmail>();
             serviceCollection.AddTransient<RepositoryTemplatesEmail>();
             serviceCollection.AddTransient<RepositoryLogBook>();

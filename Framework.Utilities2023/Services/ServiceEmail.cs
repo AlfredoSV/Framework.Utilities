@@ -1,23 +1,28 @@
 ﻿using Framework.Utilities2023.Email.IServices;
 using System.Net;
 using System.Net.Mail;
-using System;
-using System.Collections.Generic;
 using Framework.Utilities2023.Repositories;
 using Framework.Utilities2023.Entities;
+using Framework.Utilities2023.Log.Services;
+using Framework.Utilities202.Entities;
 
 namespace Framework.Utilities2023.Email.Services
 {
     public class ServiceEmail : IServiceEmail
     {
         private readonly RepositoryTemplatesEmail _repositoryTemplatesEmail;
+        private readonly SmtpConfiguration _smtpConfiguration;
+        private readonly ServiceLogBook _serviceLogBook;
 
-        public ServiceEmail(RepositoryTemplatesEmail repositoryTemplatesEmail)
+        public ServiceEmail(RepositoryTemplatesEmail repositoryTemplatesEmail,
+            SmtpConfiguration smtpConfiguration, ServiceLogBook serviceLogBook)
         {
-            _repositoryTemplatesEmail = repositoryTemplatesEmail;
+            this._repositoryTemplatesEmail = repositoryTemplatesEmail;
+            this._smtpConfiguration = smtpConfiguration;
+            this._serviceLogBook = serviceLogBook;
         }
 
-        public string GenerateBody(Guid idTemplate, Dictionary<string, string> paramsBody)
+        private string GenerateBody(Guid idTemplate, Dictionary<string, string> paramsBody)
         {
             TemplateEmail template = _repositoryTemplatesEmail.GetByid(idTemplate);
 
@@ -42,15 +47,18 @@ namespace Framework.Utilities2023.Email.Services
 
                 using (SmtpClient smtpClient = new SmtpClient("smtp.gmail.com"))
                 {
-                    smtpClient.Port = SmtpConfiguration.Instance.Port;
-                    smtpClient.EnableSsl = SmtpConfiguration.Instance.EnableSsl;
+                    smtpClient.Port = _smtpConfiguration.Port;
+                    smtpClient.EnableSsl = _smtpConfiguration.EnableSsl;
                     NetworkCredential networkCredential = new NetworkCredential();
-                    networkCredential.UserName = SmtpConfiguration.Instance.UserName;
-                    networkCredential.Password = SmtpConfiguration.Instance.Password;
+                    networkCredential.UserName = _smtpConfiguration.UserName;
+                    networkCredential.Password = _smtpConfiguration.Password;
                     smtpClient.Credentials = networkCredential;
                     smtpClient.Send(message);
                 }
-            }catch(Exception ex) { }
+            }catch(Exception ex)
+            {
+                _serviceLogBook.SaveErrorLog(LogBook.Create(nameof(ServiceEmail), nameof(SendEmail), $"{ex.Message}-{ex.StackTrace}"));
+            }
                     
         }
     }

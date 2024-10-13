@@ -16,9 +16,9 @@ namespace Framework.Utilities2023.Repositories
         {
             string insertStr = @"Select Id, NameTemplate, BodyTemplate, DateCreated from TemplateEmail
                                 where Id = @idTemplate";
-            TemplateEmail template = null;
+            TemplateEmail template = default!;
 
-            SqlDataReader sqlDataReader = null;
+            SqlDataReader sqlDataReader = default!;
             using (SqlConnection sqlConnection = new SqlConnection(_sqlStr))
             {
                 sqlConnection.Open();

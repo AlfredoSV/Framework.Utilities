@@ -11,6 +11,5 @@ namespace Framework.Utilities2023.Email.IServices
         void SendEmail(string email, string emailTo,
             Guid idBodyEmail, Dictionary<string, string> paramsBody);
 
-        string GenerateBody(Guid idTemplate, Dictionary<string, string> paramsBody);
     }
 }
