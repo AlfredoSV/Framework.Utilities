@@ -9,14 +9,34 @@ namespace Framework.Utilities2023.Log.Services {
     {
         private readonly RepositoryLogBook _repositoryLogBook;
 
-        public ServiceLogBook()
+        public ServiceLogBook(RepositoryLogBook repositoryLogBook)
         {
-            _repositoryLogBook = new RepositoryLogBook();
+            _repositoryLogBook = repositoryLogBook;
         }
-        
-        public void SaveLog(LogBook logBook)
+
+        public async Task SaveErrorLog(LogBook logBook)
         {
-            _repositoryLogBook.Save(logBook);
+            logBook.Type = ErrorType.Error;
+            await _repositoryLogBook.Save(logBook);
+        }
+
+        public async Task SaveErrorLog(Exception ex)
+        {
+            LogBook logBook = LogBook.Create(ex.TargetSite.Name, ex.TargetSite.MethodHandle.Value.ToString(), $"{ex.Message}-{ex.StackTrace}"); 
+            logBook.Type = ErrorType.Error;
+            await _repositoryLogBook.Save(logBook);
+        }
+
+        public async Task SaveInformationLog(LogBook logBook)
+        {
+            logBook.Type = ErrorType.Information;
+            await _repositoryLogBook.Save(logBook);
+        }
+
+        public async Task SaveWarningLog(LogBook logBook)
+        {
+            logBook.Type = ErrorType.Warning;
+            await _repositoryLogBook.Save(logBook);
         }
     }
 }

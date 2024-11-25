@@ -1,5 +1,4 @@
 ﻿using Framework.Utilities2023.Entities;
-using System;
 using System.Data.SqlClient;
 
 namespace Framework.Utilities2023.Repositories
@@ -8,37 +7,44 @@ namespace Framework.Utilities2023.Repositories
     {
         private readonly string _sqlStr;
 
-        public RepositoryTemplatesEmail()
+        public RepositoryTemplatesEmail(ConnectionStrUtilities connectionStrUtilities)
         {
-            _sqlStr = ConnectionStrUtilities.Instance.StrConnectionFrameworkUtilities;
+            _sqlStr = connectionStrUtilities.StrConnectionFrameworkUtilities;
         }
 
         public TemplateEmail GetByid(Guid idTemplate)
         {
-            string insertStr = @"Select Id, NameTemplate, BodyTemplate, DateCreated from TemplateEmail
-                                where Id = @idTemplate";
-            TemplateEmail template = null;
-
-            SqlDataReader sqlDataReader = null;
-            using (SqlConnection sqlConnection = new SqlConnection(_sqlStr))
+            TemplateEmail template = default!;
+            try
             {
-                sqlConnection.Open();
-                SqlCommand cmd = sqlConnection.CreateCommand();
-                cmd.CommandText = insertStr;
-                cmd.Parameters.AddWithValue("idTemplate", idTemplate);
+                string insertStr = @"Select id, name, body, CreatedAt from TemplateEmail
+                                where Id = @id";
 
-                sqlDataReader = cmd.ExecuteReader();
-
-                if (sqlDataReader.HasRows)
+                SqlDataReader sqlDataReader = default!;
+                using (SqlConnection sqlConnection = new SqlConnection(_sqlStr))
                 {
-                    sqlDataReader.Read();
+                    sqlConnection.Open();
+                    SqlCommand cmd = sqlConnection.CreateCommand();
+                    cmd.CommandText = insertStr;
+                    cmd.Parameters.AddWithValue("id", idTemplate);
 
-                    template = TemplateEmail.Create(sqlDataReader.GetGuid(0),
-                        sqlDataReader.GetString(1), sqlDataReader.GetString(2),
-                        sqlDataReader.GetDateTime(3));
+                    sqlDataReader = cmd.ExecuteReader();
+
+                    if (sqlDataReader.HasRows)
+                    {
+                        sqlDataReader.Read();
+
+                        template = TemplateEmail.Create(sqlDataReader.GetGuid(0),
+                            sqlDataReader.GetString(1), sqlDataReader.GetString(2),
+                            sqlDataReader.GetDateTime(3));
+
+                    }
 
                 }
-
+            }
+            catch (Exception)
+            {
+                throw;
             }
 
             return template;

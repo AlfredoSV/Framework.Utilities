@@ -1,32 +1,41 @@
 ﻿using Framework.Utilities2023.Email.IServices;
 using System.Net;
 using System.Net.Mail;
-using System;
-using System.Collections.Generic;
 using Framework.Utilities2023.Repositories;
 using Framework.Utilities2023.Entities;
+using Framework.Utilities2023.IServices;
 
 namespace Framework.Utilities2023.Email.Services
 {
     public class ServiceEmail : IServiceEmail
     {
         private readonly RepositoryTemplatesEmail _repositoryTemplatesEmail;
+        private readonly SmtpConfiguration _smtpConfiguration;
+        private readonly IServiceLogBook _serviceLogBook;
 
-        public ServiceEmail()
+        public ServiceEmail(RepositoryTemplatesEmail repositoryTemplatesEmail,
+            SmtpConfiguration smtpConfiguration, IServiceLogBook serviceLogBook)
         {
-            _repositoryTemplatesEmail = new RepositoryTemplatesEmail();
+            this._repositoryTemplatesEmail = repositoryTemplatesEmail;
+            this._smtpConfiguration = smtpConfiguration;
+            this._serviceLogBook = serviceLogBook;
         }
 
-        public string GenerateBody(Guid idTemplate, Dictionary<string, string> paramsBody)
+        private TemplateEmail GenerateBody(Guid idTemplate, Dictionary<string, string> paramsBody)
         {
             TemplateEmail template = _repositoryTemplatesEmail.GetByid(idTemplate);
 
-            foreach (KeyValuePair<string,string> paraBo in paramsBody)
+            if (template is null)
             {
-                template.BodyTemplate = template.BodyTemplate.Replace(paraBo.Key, paraBo.Value);
+                throw new NullReferenceException("template is null");
             }
 
-            return template.BodyTemplate;
+            foreach (KeyValuePair<string,string> paraBo in paramsBody)
+            {
+                template.Body = template.Body.Replace(paraBo.Key, paraBo.Value);
+            }
+
+            return template;
             
         }
 
@@ -35,24 +44,28 @@ namespace Framework.Utilities2023.Email.Services
         {
             try
             {
+                TemplateEmail template = GenerateBody(idTemplate, paramsBody);
                 MailMessage message = new MailMessage();
                 message.From = new MailAddress(email);
                 message.To.Add(emailTo);
-                message.Body = GenerateBody(idTemplate, paramsBody);
+                message.Body =  template.Body;
 
                 using (SmtpClient smtpClient = new SmtpClient("smtp.gmail.com"))
                 {
-                    smtpClient.Port = SmtpConfiguration.Instance.Port;
-                    smtpClient.EnableSsl = SmtpConfiguration.Instance.EnableSsl;
+                    smtpClient.Port = _smtpConfiguration.Port;
+                    smtpClient.EnableSsl = _smtpConfiguration.EnableSsl;
                     NetworkCredential networkCredential = new NetworkCredential();
-                    networkCredential.UserName = SmtpConfiguration.Instance.UserName;
-                    networkCredential.Password = SmtpConfiguration.Instance.Password;
+                    networkCredential.UserName = _smtpConfiguration.UserName;
+                    networkCredential.Password = _smtpConfiguration.Password;
+                    smtpClient.DeliveryFormat = SmtpDeliveryFormat.International;
                     smtpClient.Credentials = networkCredential;
                     smtpClient.Send(message);
                 }
-            }catch(Exception ex) { }
-            
-            
+
+            }catch(Exception)
+            {
+                throw;
+            }                  
         }
     }
 }

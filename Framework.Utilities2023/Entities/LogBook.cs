@@ -5,87 +5,75 @@ namespace Framework.Utilities202.Entities
 {
     public class LogBook
     {
-        private Guid _idName;
+        private Guid _id;
    
-        public Guid IdName
+        public Guid Id
         {
-            get { return this._idName; }
-            set { this._idName = value; }
+            get { return this._id; }
+            set { this._id = value; }
         }
 
-        private string _className;
+        private string _class;
 
-        public string ClassName
+        public string Class
         {
-            get { return _className; }
-            set { _className = value; }
+            get { return _class; }
+            set { _class = value; }
         }
 
-        private string _methodName;
+        private string _method;
 
-        public string MethodName
+        public string Method
         {
-            get { return _methodName; }
-            set { _methodName = value; }
+            get { return _method; }
+            set { _method = value; }
         }
 
-        private string _typeName;
+        private ErrorType _type;
 
-        public string TypeName
+        public ErrorType Type
         {
 
-            get { return this._typeName; }
-            set { this._typeName = value; }
-
-        }
-
-        private string _meessageName;
-
-        public string MessageName
-        {
-
-            get { return this._meessageName; }
-            set { this._meessageName = value; }
+            get { return this._type; }
+            set { this._type = value; }
 
         }
 
-        private DateTime _dateCreated;
+        private string _meessage;
 
-        public DateTime DateCreated
+        public string Message
         {
-            get { return _dateCreated; }
-            set { _dateCreated = value; }
+
+            get { return this._meessage; }
+            set { this._meessage = value; }
+
         }
 
-        private LogBook( string classEx, string method, string type, string message)
+        public DateTime CreatedAt
         {
-            IdName = Guid.NewGuid();
-            ClassName = classEx;
-            MethodName = method;
-            TypeName = type;
-            MessageName = message;
-            DateCreated = DateTime.Now;
+            get { return DateTime.Now; }
         }
 
-        private LogBook(Guid id, string classEx, string method, string type, string message, DateTime dateCreated)
+
+        private LogBook(string classEx, string method, string message)
         {
-            IdName = id;
-            ClassName = classEx;
-            MethodName = method;
-            TypeName = type;
-            MessageName = message;
-            DateCreated = dateCreated;
+            Id = Guid.NewGuid();
+            Class = classEx;
+            Method = method;
+            Message = message;
         }
 
-        public static LogBook Create( string classEx, string method, string type, string message)
+        public static LogBook Create(string classEx, string method, string message)
         {
-            return new LogBook(   classEx,  method,  type,  message);
+            return new LogBook(classEx, method, message);
         }
+    }
 
-        public static LogBook Create(Guid id, string classEx, string method, string type, string message, DateTime dateCreated)
-        {
-            return new LogBook(id,classEx, method, type, message,dateCreated);
-        }
+    public enum ErrorType
+    {
+        Error = -1,
+        Warning = 1,
+        Information = 0,
     }
 
 }

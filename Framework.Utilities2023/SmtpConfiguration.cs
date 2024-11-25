@@ -1,38 +1,52 @@
-﻿namespace Framework.Utilities2023
+﻿using Microsoft.Extensions.Configuration;
+
+namespace Framework.Utilities2023
 {
     public class SmtpConfiguration
-    {
-        private static SmtpConfiguration _instance;
 
-        public static SmtpConfiguration Instance
+    {
+        private readonly IConfiguration _configuration;
+        public SmtpConfiguration(IConfiguration configuration)
+        {
+            this._configuration = configuration;
+        }
+
+        public int Port
         {
             get
             {
-
-                if (_instance is null)
-                    _instance = new SmtpConfiguration();
-                return _instance;
-
+                return Convert.ToInt32(this._configuration["Smtp:Default:Port"]);
             }
-            private set { }
         }
 
-        public int Port { get; private set; }
-
-        public bool EnableSsl { get; private set; }
-
-        public string UserName { get; private set; }
-
-        public string Password { get; private set; }
-    
-        public void SetConfiguration(int port, bool
-            enableSsl, string userName, string password)
+        public bool EnableSsl
         {
-            this.Port = port;
-            this.EnableSsl = enableSsl;
-            this.UserName = userName;
-            this.Password = password;
+            get
+            {
+                return Convert.ToBoolean(this._configuration["Smtp:Default:EnableSsl"]);
+            }
         }
-    
+
+        public string UserName
+        {
+            get
+            {
+                string userName = this._configuration["Smtp:Default:UserName"];
+                ArgumentException.ThrowIfNullOrWhiteSpace(userName);
+                return userName;
+            }
+
+        }
+
+        public string Password
+        {
+            get
+            {
+                string password = this._configuration["Smtp:Default:Password"];
+                ArgumentException.ThrowIfNullOrWhiteSpace(password);
+                return password;
+            }
+
+        }
     }
 }

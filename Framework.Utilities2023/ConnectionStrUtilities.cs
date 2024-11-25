@@ -1,28 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.Configuration;
 
 namespace Framework.Utilities2023
 {
     public class ConnectionStrUtilities
     {
-        private static ConnectionStrUtilities _instance;
+        private string _connectionStr;
 
-        public  static ConnectionStrUtilities Instance
+        private IConfiguration _configuration;
+
+        public ConnectionStrUtilities(IConfiguration config)
         {
-            get {
-
-                if (_instance is null)
-                    _instance = new ConnectionStrUtilities();
-                return _instance;
-            
-            }
-            private set { }
+            this._configuration = config;
         }
 
-        public string StrConnectionFrameworkUtilities { get; set; }
+        public ConnectionStrUtilities(){}
+
+
+        public string StrConnectionFrameworkUtilities
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_connectionStr))
+                {
+                    _connectionStr = this._configuration["DataBase:ConnectionStrUtilities"];
+                    ArgumentException.ThrowIfNullOrWhiteSpace(_connectionStr, nameof(_connectionStr));
+                }
+
+                return _connectionStr;
+            }
+
+            set { }
+        }
 
     }
 }
