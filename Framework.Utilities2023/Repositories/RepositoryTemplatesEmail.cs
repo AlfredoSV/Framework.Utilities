@@ -14,30 +14,37 @@ namespace Framework.Utilities2023.Repositories
 
         public TemplateEmail GetByid(Guid idTemplate)
         {
-            string insertStr = @"Select Id, NameTemplate, BodyTemplate, DateCreated from TemplateEmail
-                                where Id = @idTemplate";
             TemplateEmail template = default!;
-
-            SqlDataReader sqlDataReader = default!;
-            using (SqlConnection sqlConnection = new SqlConnection(_sqlStr))
+            try
             {
-                sqlConnection.Open();
-                SqlCommand cmd = sqlConnection.CreateCommand();
-                cmd.CommandText = insertStr;
-                cmd.Parameters.AddWithValue("idTemplate", idTemplate);
+                string insertStr = @"Select id, name, body, CreatedAt from TemplateEmail
+                                where Id = @id";
 
-                sqlDataReader = cmd.ExecuteReader();
-
-                if (sqlDataReader.HasRows)
+                SqlDataReader sqlDataReader = default!;
+                using (SqlConnection sqlConnection = new SqlConnection(_sqlStr))
                 {
-                    sqlDataReader.Read();
+                    sqlConnection.Open();
+                    SqlCommand cmd = sqlConnection.CreateCommand();
+                    cmd.CommandText = insertStr;
+                    cmd.Parameters.AddWithValue("id", idTemplate);
 
-                    template = TemplateEmail.Create(sqlDataReader.GetGuid(0),
-                        sqlDataReader.GetString(1), sqlDataReader.GetString(2),
-                        sqlDataReader.GetDateTime(3));
+                    sqlDataReader = cmd.ExecuteReader();
+
+                    if (sqlDataReader.HasRows)
+                    {
+                        sqlDataReader.Read();
+
+                        template = TemplateEmail.Create(sqlDataReader.GetGuid(0),
+                            sqlDataReader.GetString(1), sqlDataReader.GetString(2),
+                            sqlDataReader.GetDateTime(3));
+
+                    }
 
                 }
-
+            }
+            catch (Exception)
+            {
+                throw;
             }
 
             return template;

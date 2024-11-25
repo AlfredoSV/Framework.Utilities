@@ -4,8 +4,12 @@ namespace Framework.Utilities2023.IServices
 {
     public interface IServiceLogBook
     {
-        void SaveWarningLog(LogBook logBook);
-        void SaveErrorLog(LogBook logBook);
-        void SaveInformationLog(LogBook logBook);
+        Task SaveWarningLog(LogBook logBook);
+
+        Task SaveErrorLog(LogBook logBook);
+        
+        Task SaveErrorLog(Exception exception);
+        
+        Task SaveInformationLog(LogBook logBook);
     }
 }

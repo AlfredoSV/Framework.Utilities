@@ -5,28 +5,28 @@ namespace Framework.Utilities202.Entities
 {
     public class LogBook
     {
-        private Guid _idName;
+        private Guid _id;
    
-        public Guid IdName
+        public Guid Id
         {
-            get { return this._idName; }
-            set { this._idName = value; }
+            get { return this._id; }
+            set { this._id = value; }
         }
 
-        private string _className;
+        private string _class;
 
-        public string ClassName
+        public string Class
         {
-            get { return _className; }
-            set { _className = value; }
+            get { return _class; }
+            set { _class = value; }
         }
 
-        private string _methodName;
+        private string _method;
 
-        public string MethodName
+        public string Method
         {
-            get { return _methodName; }
-            set { _methodName = value; }
+            get { return _method; }
+            set { _method = value; }
         }
 
         private ErrorType _type;
@@ -49,7 +49,7 @@ namespace Framework.Utilities202.Entities
 
         }
 
-        public DateTime DateCreated
+        public DateTime CreatedAt
         {
             get { return DateTime.Now; }
         }
@@ -57,12 +57,11 @@ namespace Framework.Utilities202.Entities
 
         private LogBook(string classEx, string method, string message)
         {
-            IdName = Guid.NewGuid();
-            ClassName = classEx;
-            MethodName = method;
+            Id = Guid.NewGuid();
+            Class = classEx;
+            Method = method;
             Message = message;
         }
-
 
         public static LogBook Create(string classEx, string method, string message)
         {

@@ -17,8 +17,8 @@ namespace Framework.Utilities2023.Services
             serviceCollection.AddTransient<RepositoryTemplatesEmail>();
             serviceCollection.AddTransient<RepositoryTemplatesEmail>();
             serviceCollection.AddTransient<RepositoryLogBook>();
-            serviceCollection.AddTransient<IServiceEmail, ServiceEmail>();
             serviceCollection.AddTransient<IServiceLogBook, ServiceLogBook>();
+            serviceCollection.AddTransient<IServiceEmail, ServiceEmail>();
         }
     }
 }
