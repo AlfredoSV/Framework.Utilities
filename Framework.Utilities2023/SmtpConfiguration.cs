@@ -3,6 +3,7 @@
 namespace Framework.Utilities2023
 {
     public class SmtpConfiguration
+
     {
         private readonly IConfiguration _configuration;
         public SmtpConfiguration(IConfiguration configuration)

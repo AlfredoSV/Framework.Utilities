@@ -15,6 +15,7 @@ namespace Framework.Utilities2023
 
         public ConnectionStrUtilities(){}
 
+
         public string StrConnectionFrameworkUtilities
         {
             get
@@ -26,7 +27,6 @@ namespace Framework.Utilities2023
                 }
 
                 return _connectionStr;
-
             }
 
             set { }

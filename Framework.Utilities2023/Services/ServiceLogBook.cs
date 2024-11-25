@@ -14,29 +14,29 @@ namespace Framework.Utilities2023.Log.Services {
             _repositoryLogBook = repositoryLogBook;
         }
 
-        public void SaveErrorLog(LogBook logBook)
+        public async Task SaveErrorLog(LogBook logBook)
         {
             logBook.Type = ErrorType.Error;
-            _repositoryLogBook.Save(logBook);
+            await _repositoryLogBook.Save(logBook);
         }
 
-        //public void SaveErrorLog(Exception ex)
-        //{
-        //    LogBook logBook = LogBook.Create(ex.StackTrace.)
-        //    logBook.Type = ErrorType.Error;
-        //    _repositoryLogBook.Save(logBook);
-        //}
+        public async Task SaveErrorLog(Exception ex)
+        {
+            LogBook logBook = LogBook.Create(ex.TargetSite.Name, ex.TargetSite.MethodHandle.Value.ToString(), $"{ex.Message}-{ex.StackTrace}"); 
+            logBook.Type = ErrorType.Error;
+            await _repositoryLogBook.Save(logBook);
+        }
 
-        public void SaveInformationLog(LogBook logBook)
+        public async Task SaveInformationLog(LogBook logBook)
         {
             logBook.Type = ErrorType.Information;
-            _repositoryLogBook.Save(logBook);
+            await _repositoryLogBook.Save(logBook);
         }
 
-        public void SaveWarningLog(LogBook logBook)
+        public async Task SaveWarningLog(LogBook logBook)
         {
             logBook.Type = ErrorType.Warning;
-            _repositoryLogBook.Save(logBook);
+            await _repositoryLogBook.Save(logBook);
         }
     }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Framework.Utilities2023.Entities
+﻿namespace Framework.Utilities2023.Entities
 {
     public class TemplateEmail
     {
@@ -16,42 +10,42 @@ namespace Framework.Utilities2023.Entities
             set { _id = value; }
         }
 
-        private string _nameTemplate;
+        private string _name;
 
-        public string NameTemplate
+        public string Name
         {
-            get { return _nameTemplate; }
-            set { _nameTemplate = value; }
+            get { return _name; }
+            set { _name = value; }
         }
 
-        private string _bodyTemplate;
+        private string _body;
 
-        public string BodyTemplate
+        public string Body
         {
-            get { return _bodyTemplate; }
-            set { _bodyTemplate = value; }
+            get { return _body; }
+            set { _body = value; }
         }
 
-        private DateTime _dateCreated;
+        private DateTime _createdAt;
 
-        public DateTime DateCreated
+        public DateTime CreatedAt
         {
-            get { return _dateCreated; }
-            set { _dateCreated = value; }
+            get { return _createdAt; }
+            set { _createdAt = value; }
         }
 
 
-        private TemplateEmail(Guid id, string nameTemplate, string bodyTemplate, DateTime dateCreated)
+        private TemplateEmail(Guid id, string name, string body, DateTime createdAt)
         {
             _id = id;
-            _nameTemplate = nameTemplate;
-            _bodyTemplate = bodyTemplate;
-            _dateCreated = dateCreated;
+            _name = name;
+            _body = body;
+            _createdAt = createdAt;
         }
 
-        public static TemplateEmail Create(Guid id, string nameTemplate, string bodyTemplate, DateTime dateCreated)
+        public static TemplateEmail Create(Guid id, string name, string body, DateTime createdAt)
         {
-            return new TemplateEmail(id,nameTemplate,bodyTemplate,dateCreated);
+            return new TemplateEmail(id,name,body,createdAt);
         }
        
     }
