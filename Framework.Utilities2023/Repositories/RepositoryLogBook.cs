@@ -1,7 +1,7 @@
 ﻿using Framework.Utilities202.Entities;
 using System.Data.SqlClient;
 
-namespace Framework.Utilities2023.Repository
+namespace Framework.Utilities.Repository
 {
     public class RepositoryLogBook
     {
@@ -16,7 +16,7 @@ namespace Framework.Utilities2023.Repository
         {
             try
             {
-                string insertStr = @"INSERT INTO LogBook VALUES(@id, @name,@method, @type, @message, @createdAt);";
+                string insertStr = @"INSERT INTO LogBook VALUES(@id, @class, @method, @type, @message, @createdAt);";
                 using (SqlConnection sqlConnection = new SqlConnection(_sqlStr))
                 {
                     await sqlConnection.OpenAsync();

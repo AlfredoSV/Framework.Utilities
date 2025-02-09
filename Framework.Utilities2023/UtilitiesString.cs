@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Framework.Utilities2023.UtilitiesString
+namespace Framework.Utilities.UtilitiesString
 {
     public static class UtilitiesString
     {

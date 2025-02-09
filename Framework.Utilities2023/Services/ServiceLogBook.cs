@@ -1,9 +1,9 @@
 ﻿
 using Framework.Utilities202.Entities;
-using Framework.Utilities2023.IServices;
-using Framework.Utilities2023.Repository;
+using Framework.Utilities.IServices;
+using Framework.Utilities.Repository;
 
-namespace Framework.Utilities2023.Log.Services { 
+namespace Framework.Utilities.Log.Services { 
 
     public class ServiceLogBook : IServiceLogBook
     {
@@ -26,6 +26,15 @@ namespace Framework.Utilities2023.Log.Services {
             logBook.Type = ErrorType.Error;
             await _repositoryLogBook.Save(logBook);
         }
+
+        public async Task SaveCustomLog(Guid id, string classEx, string method, string message, ErrorType errorType)
+        {
+            LogBook logBook = LogBook.Create(classEx, method, message);
+            logBook.Id = id;    
+            logBook.Type = errorType;
+            await _repositoryLogBook.Save(logBook);
+        }
+
 
         public async Task SaveInformationLog(LogBook logBook)
         {

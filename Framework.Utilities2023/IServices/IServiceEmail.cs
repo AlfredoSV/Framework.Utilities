@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Framework.Utilities2023.Email.IServices
+namespace Framework.Utilities.Email.IServices
 {
     public  interface IServiceEmail
     {

@@ -1,4 +1,4 @@
-﻿namespace Framework.Utilities2023.Entities
+﻿namespace Framework.Utilities.Entities
 {
     public class TemplateEmail
     {

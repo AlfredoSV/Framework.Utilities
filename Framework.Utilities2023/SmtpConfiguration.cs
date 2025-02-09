@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace Framework.Utilities2023
+namespace Framework.Utilities
 {
     public class SmtpConfiguration
 
