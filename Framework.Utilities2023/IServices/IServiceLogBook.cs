@@ -1,6 +1,6 @@
 ﻿using Framework.Utilities202.Entities;
 
-namespace Framework.Utilities2023.IServices
+namespace Framework.Utilities.IServices
 {
     public interface IServiceLogBook
     {
@@ -11,5 +11,7 @@ namespace Framework.Utilities2023.IServices
         Task SaveErrorLog(Exception exception);
         
         Task SaveInformationLog(LogBook logBook);
+
+        Task SaveCustomLog(Guid id, string classEx, string method, string message, ErrorType errorType);
     }
 }

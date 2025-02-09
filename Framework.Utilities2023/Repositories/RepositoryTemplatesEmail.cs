@@ -1,7 +1,7 @@
-﻿using Framework.Utilities2023.Entities;
+﻿using Framework.Utilities.Entities;
 using System.Data.SqlClient;
 
-namespace Framework.Utilities2023.Repositories
+namespace Framework.Utilities.Repositories
 {
     public class RepositoryTemplatesEmail
     {

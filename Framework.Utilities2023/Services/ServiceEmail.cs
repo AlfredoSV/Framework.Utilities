@@ -1,11 +1,11 @@
-﻿using Framework.Utilities2023.Email.IServices;
+﻿using Framework.Utilities.Email.IServices;
 using System.Net;
 using System.Net.Mail;
-using Framework.Utilities2023.Repositories;
-using Framework.Utilities2023.Entities;
-using Framework.Utilities2023.IServices;
+using Framework.Utilities.Repositories;
+using Framework.Utilities.Entities;
+using Framework.Utilities.IServices;
 
-namespace Framework.Utilities2023.Email.Services
+namespace Framework.Utilities.Email.Services
 {
     public class ServiceEmail : IServiceEmail
     {

@@ -1,12 +1,12 @@
-﻿using Framework.Utilities2023.Email.IServices;
-using Framework.Utilities2023.Email.Services;
-using Framework.Utilities2023.IServices;
-using Framework.Utilities2023.Log.Services;
-using Framework.Utilities2023.Repositories;
-using Framework.Utilities2023.Repository;
+﻿using Framework.Utilities.Email.IServices;
+using Framework.Utilities.Email.Services;
+using Framework.Utilities.IServices;
+using Framework.Utilities.Log.Services;
+using Framework.Utilities.Repositories;
+using Framework.Utilities.Repository;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Framework.Utilities2023.Services
+namespace Framework.Utilities.Services
 {
     public static class InitialServices
     {
