@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Framework.Utilities2023.UtilitiesInt
+namespace Framework.Utilities.UtilitiesInt
 {
     public static class UtilitiesInt
     {
