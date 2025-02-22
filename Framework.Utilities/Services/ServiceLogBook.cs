@@ -1,5 +1,5 @@
 ﻿
-using Framework.Utilities202.Entities;
+using Framework.Utilities.Entities;
 using Framework.Utilities.IServices;
 using Framework.Utilities.Repository;
 

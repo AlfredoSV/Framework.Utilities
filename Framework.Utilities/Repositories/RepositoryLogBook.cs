@@ -1,4 +1,4 @@
-﻿using Framework.Utilities202.Entities;
+﻿using Framework.Utilities.Entities;
 using System.Data.SqlClient;
 
 namespace Framework.Utilities.Repository

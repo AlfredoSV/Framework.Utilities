@@ -1,4 +1,4 @@
-﻿using Framework.Utilities202.Entities;
+﻿using Framework.Utilities.Entities;
 
 namespace Framework.Utilities.IServices
 {
