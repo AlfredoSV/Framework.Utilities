@@ -35,7 +35,6 @@ namespace Framework.Utilities.Log.Services {
             await _repositoryLogBook.Save(logBook);
         }
 
-
         public async Task SaveInformationLog(LogBook logBook)
         {
             logBook.Type = ErrorType.Information;
