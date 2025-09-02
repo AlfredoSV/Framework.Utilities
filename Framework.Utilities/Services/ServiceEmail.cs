@@ -21,30 +21,37 @@ namespace Framework.Utilities.Email.Services
             this._serviceLogBook = serviceLogBook;
         }
 
-        private TemplateEmail GenerateBody(Guid idTemplate, Dictionary<string, string> paramsBody)
-        {
-            TemplateEmail template = _repositoryTemplatesEmail.GetByid(idTemplate);
-
-            if (template is null)
-            {
-                throw new NullReferenceException("template is null");
-            }
-
-            foreach (KeyValuePair<string,string> paraBo in paramsBody)
-            {
-                template.Body = template.Body.Replace(paraBo.Key, paraBo.Value);
-            }
-
-            return template;
-            
-        }
-
-        public void SendEmail(string email,string emailTo,
-            Guid idTemplate, Dictionary<string,string> paramsBody)
+        private async Task<TemplateEmail> GenerateBody(int idTemplate, Dictionary<string, string> paramsBody)
         {
             try
             {
-                TemplateEmail template = GenerateBody(idTemplate, paramsBody);
+                TemplateEmail template = await _repositoryTemplatesEmail.GetByIdAsync(idTemplate);
+
+                if (template is null)
+                {
+                    throw new NullReferenceException("template is null");
+                }
+
+                foreach (KeyValuePair<string, string> paraBo in paramsBody)
+                {
+                    template.Body = template.Body.Replace(paraBo.Key, paraBo.Value);
+                }
+
+                return template;
+            }
+            catch (Exception ex)
+            {
+                await this._serviceLogBook.SaveErrorLog(ex);
+                throw;
+            }
+        }
+
+        public async Task SendEmailAsync(string email,string emailTo,
+            int idTemplate, Dictionary<string,string> paramsBody)
+        {
+            try
+            {
+                TemplateEmail template = await GenerateBody(idTemplate, paramsBody);
                 MailMessage message = new MailMessage();
                 message.From = new MailAddress(email);
                 message.To.Add(emailTo);
@@ -62,8 +69,9 @@ namespace Framework.Utilities.Email.Services
                     smtpClient.Send(message);
                 }
 
-            }catch(Exception)
+            }catch(Exception ex)
             {
+                await this._serviceLogBook.SaveErrorLog(ex);
                 throw;
             }                  
         }

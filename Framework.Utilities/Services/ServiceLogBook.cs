@@ -17,14 +17,14 @@ namespace Framework.Utilities.Log.Services {
         public async Task SaveErrorLog(LogBook logBook)
         {
             logBook.Type = ErrorType.Error;
-            await _repositoryLogBook.Save(logBook);
+            await _repositoryLogBook.SaveAsync(logBook);
         }
 
         public async Task SaveErrorLog(Exception ex)
         {
             LogBook logBook = LogBook.Create(ex.TargetSite.Name, ex.TargetSite.MethodHandle.Value.ToString(), $"{ex.Message}-{ex.StackTrace}"); 
             logBook.Type = ErrorType.Error;
-            await _repositoryLogBook.Save(logBook);
+            await _repositoryLogBook.SaveAsync(logBook);
         }
 
         public async Task SaveCustomLog(Guid id, string classEx, string method, string message, ErrorType errorType)
@@ -32,19 +32,19 @@ namespace Framework.Utilities.Log.Services {
             LogBook logBook = LogBook.Create(classEx, method, message);
             logBook.Id = id;    
             logBook.Type = errorType;
-            await _repositoryLogBook.Save(logBook);
+            await _repositoryLogBook.SaveAsync(logBook);
         }
 
         public async Task SaveInformationLog(LogBook logBook)
         {
             logBook.Type = ErrorType.Information;
-            await _repositoryLogBook.Save(logBook);
+            await _repositoryLogBook.SaveAsync(logBook);
         }
 
         public async Task SaveWarningLog(LogBook logBook)
         {
             logBook.Type = ErrorType.Warning;
-            await _repositoryLogBook.Save(logBook);
+            await _repositoryLogBook.SaveAsync(logBook);
         }
     }
 }

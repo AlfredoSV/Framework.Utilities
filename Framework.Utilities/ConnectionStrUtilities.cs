@@ -23,7 +23,7 @@ namespace Framework.Utilities
                 if (string.IsNullOrEmpty(_connectionStr))
                 {
                     _connectionStr = this._configuration["DataBase:ConnectionStrUtilities"];
-                    ArgumentException.ThrowIfNullOrWhiteSpace(_connectionStr, nameof(_connectionStr));
+                    ArgumentException.ThrowIfNullOrWhiteSpace(_connectionStr, "StrConnectionFrameworkUtilities");
                 }
 
                 return _connectionStr;

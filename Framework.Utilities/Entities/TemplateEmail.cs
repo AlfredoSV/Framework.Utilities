@@ -2,9 +2,9 @@
 {
     public class TemplateEmail
     {
-        private Guid _id;
+        private int _id;
 
-        public Guid Id
+        public int Id
         {
             get { return _id; }
             set { _id = value; }
@@ -35,7 +35,7 @@
         }
 
 
-        private TemplateEmail(Guid id, string name, string body, DateTime createdAt)
+        private TemplateEmail(int id, string name, string body, DateTime createdAt)
         {
             _id = id;
             _name = name;
@@ -43,7 +43,7 @@
             _createdAt = createdAt;
         }
 
-        public static TemplateEmail Create(Guid id, string name, string body, DateTime createdAt)
+        public static TemplateEmail Create(int id, string name, string body, DateTime createdAt)
         {
             return new TemplateEmail(id,name,body,createdAt);
         }

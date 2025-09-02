@@ -7,7 +7,7 @@ using Framework.Utilities.Repository;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Framework.Utilities.Services
-{
+{ 
     public static class InitialServices
     {
         public static void AddInitialServices(this IServiceCollection serviceCollection)

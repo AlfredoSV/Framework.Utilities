@@ -12,6 +12,7 @@ public class CustomExceptionHandler : IExceptionHandler
     {
         this.serviceLogBook = serviceLogBook;
     }
+
     public  ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
     {
         var error = exception;

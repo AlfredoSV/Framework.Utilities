@@ -1,7 +1,4 @@
-﻿
-using System;
-
-namespace Framework.Utilities.Entities
+﻿namespace Framework.Utilities.Entities
 {
     public class LogBook
     {

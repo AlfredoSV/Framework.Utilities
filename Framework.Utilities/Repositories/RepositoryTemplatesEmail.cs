@@ -12,7 +12,7 @@ namespace Framework.Utilities.Repositories
             _sqlStr = connectionStrUtilities.StrConnectionFrameworkUtilities;
         }
 
-        public TemplateEmail GetByid(Guid idTemplate)
+        public async Task<TemplateEmail> GetByIdAsync(int idTemplate)
         {
             TemplateEmail template = default!;
             try
@@ -21,20 +21,22 @@ namespace Framework.Utilities.Repositories
                                 where Id = @id";
 
                 SqlDataReader sqlDataReader = default!;
+                SqlParameter sqlParameter = new SqlParameter("@id", System.Data.SqlDbType.Int);
+                sqlParameter.Value = idTemplate;
                 using (SqlConnection sqlConnection = new SqlConnection(_sqlStr))
                 {
-                    sqlConnection.Open();
+                    await sqlConnection.OpenAsync();
                     SqlCommand cmd = sqlConnection.CreateCommand();
                     cmd.CommandText = insertStr;
-                    cmd.Parameters.AddWithValue("id", idTemplate);
+                    cmd.Parameters.Add(sqlParameter);
 
-                    sqlDataReader = cmd.ExecuteReader();
+                    sqlDataReader = await cmd.ExecuteReaderAsync();
 
                     if (sqlDataReader.HasRows)
                     {
-                        sqlDataReader.Read();
+                        await sqlDataReader.ReadAsync();
 
-                        template = TemplateEmail.Create(sqlDataReader.GetGuid(0),
+                        template = TemplateEmail.Create(sqlDataReader.GetInt32(0),
                             sqlDataReader.GetString(1), sqlDataReader.GetString(2),
                             sqlDataReader.GetDateTime(3));
 
